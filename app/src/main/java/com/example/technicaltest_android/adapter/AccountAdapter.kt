@@ -4,37 +4,36 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.technicaltest_android.R
-import com.example.technicaltest_android.model.Pokemon
-import kotlinx.android.synthetic.main.item_pokemon_list.view.*
+import com.example.technicaltest_android.model.Account
+import kotlinx.android.synthetic.main.item_account_list.view.*
 
 class AccountAdapter : RecyclerView.Adapter<AccountAdapter.ViewHolder>() {
 
-    var pokemons: MutableList<Pokemon> = ArrayList()
+    var accountList: MutableList<Account> = ArrayList()
 
     lateinit var context: Context
 
-    fun RecyclerAdapter(pokemons: MutableList<Pokemon>, context: Context) {
-        this.pokemons = pokemons
+    fun RecyclerAdapter(accounts: MutableList<Account>, context: Context) {
+        this.accountList = accounts
         this.context = context
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = pokemons.get(position)
+        val item = accountList.get(position)
 
-        holder.mPokemonName.text = item.IBAN
-        holder.mPokemonDescription.text = item.balance
+        holder.accountIban.text = item.IBAN
+        holder.accountBalance.text = item.balance
         holder.accountName.text = item.accountName
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return AccountAdapter.ViewHolder(
+        return ViewHolder(
             layoutInflater.inflate(
-                R.layout.item_pokemon_list,
+                R.layout.item_account_list,
                 parent,
                 false
             )
@@ -43,18 +42,18 @@ class AccountAdapter : RecyclerView.Adapter<AccountAdapter.ViewHolder>() {
 
 
     override fun getItemCount(): Int {
-        return pokemons.size
+        return accountList.size
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val mPokemonName = view.pokemon_label_name as TextView
-        val mPokemonDescription = view.pokemon_label_description as TextView
+        val accountIban = view.account_label_iban as TextView
+        val accountBalance = view.account_label_balance as TextView
         val accountName = view.txt_account_name as TextView
 
     }
 
-    fun updateList(datalist: MutableList<Pokemon>) {
-        this.pokemons = datalist
+    fun updateList(datalist: MutableList<Account>) {
+        this.accountList = datalist
         notifyDataSetChanged()
     }
 }

@@ -5,8 +5,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
 
-class ViewPagerAdapter(val fragmentManager: FragmentManager, val listFragments: List<Fragment>,
-                       val listTitles: List<String>): FragmentPagerAdapter(fragmentManager) {
+class ViewPagerAdapter(
+    private val fragmentManager: FragmentManager, private val listFragments: List<Fragment>,
+    private val listTitles: List<String>): FragmentPagerAdapter(fragmentManager) {
 
     override fun getItem(position: Int): Fragment {
         return listFragments[position]

@@ -8,10 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import butterknife.BindView
 import butterknife.ButterKnife
-import com.example.technicaltest_android.AccountNoVisibleFragment
 import com.example.technicaltest_android.R
 import com.example.technicaltest_android.adapter.ViewPagerAdapter
-import com.example.technicaltest_android.model.Pokemon
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,9 +19,8 @@ class MainActivity : AppCompatActivity() {
     @BindView(R.id.mainFragment)
     lateinit var viewPager: ViewPager
 
-    val listFragment = mutableListOf<Fragment>()
-    val listTitle = mutableListOf<String>()
-
+    private val listFragment = mutableListOf<Fragment>()
+    private val listTitle = mutableListOf<String>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,11 +31,11 @@ class MainActivity : AppCompatActivity() {
         toolbarList.setTitle(R.string.app_name)
         toolbarList.setTitleTextColor(Color.WHITE)
 
-        listFragment.add(PokemonFragment())
+        listFragment.add(AccountFragment())
         listFragment.add(AccountNoVisibleFragment())
 
-        listTitle.add(getString(R.string.Pokemons))
-        listTitle.add(getString(R.string.SuperHeroes))
+        listTitle.add(getString(R.string.accounts))
+        listTitle.add(getString(R.string.accounts_no_visible))
 
         val viewPagerAdapter =
             ViewPagerAdapter(

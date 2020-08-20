@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/pokemon_contraintLayout"
+    android:id="@+id/item_constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
@@ -10,18 +9,18 @@
     >
 
     <ImageView
-        android:id="@+id/pokemon_img_url"
+        android:id="@+id/account_img_user"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/pokemon_label_name"
+        app:layout_constraintEnd_toStartOf="@+id/account_label_iban"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_account_circle_24" />
 
     <TextView
-        android:id="@+id/pokemon_label_name"
+        android:id="@+id/account_label_iban"
         android:layout_width="0dp"
         android:layout_height="31dp"
         android:textAlignment="viewStart"
@@ -39,24 +38,23 @@
         app:layout_constraintGuide_begin="60dp" />
 
     <TextView
-        android:id="@+id/pokemon_label_description"
+        android:id="@+id/account_label_balance"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:text="TextView"
+        android:layout_marginStart="16dp"
         android:textAlignment="viewStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txt_account_name"
-        app:layout_constraintTop_toBottomOf="@+id/pokemon_label_name" />
+        app:layout_constraintTop_toBottomOf="@+id/account_label_iban" />
 
     <TextView
         android:id="@+id/txt_account_name"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pokemon_img_url"
-        app:layout_constraintTop_toBottomOf="@+id/pokemon_label_name" />
+        app:layout_constraintStart_toEndOf="@+id/account_img_user"
+        app:layout_constraintTop_toBottomOf="@+id/account_label_iban" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

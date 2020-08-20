@@ -1,31 +1,30 @@
-package com.example.technicaltest_android
+package com.example.technicaltest_android.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.example.technicaltest_android.model.Account
+import com.example.technicaltest_android.R
 import com.example.technicaltest_android.adapter.AccountAdapter
-import com.example.technicaltest_android.model.Pokemon
-import com.example.technicaltest_android.viewmodel.AccountNoVisibleViewModel
 import com.example.technicaltest_android.viewmodel.AccountViewModel
 
 
-class AccountNoVisibleFragment () : Fragment() {
+class AccountFragment : Fragment() {
     @BindView(R.id.recycler_main)
-    lateinit var mRecyclerView: RecyclerView
+    lateinit var recyclerView: RecyclerView
 
-    private var viewModel = AccountNoVisibleViewModel()
-    val entities = ArrayList<Pokemon>()
-    private val mAdapter: AccountAdapter = AccountAdapter()
-    private val pokemonObserver = Observer<MutableList<Pokemon>> { pokemonList ->
-        mAdapter.updateList(pokemonList)
+    private var viewModel = AccountViewModel()
+    private val accountAdapter: AccountAdapter = AccountAdapter()
+    private val accountObserver = Observer<MutableList<Account>> { list ->
+        accountAdapter.updateList(list)
     }
 
     override fun onCreateView(
@@ -38,20 +37,19 @@ class AccountNoVisibleFragment () : Fragment() {
         setUpRecyclerView()
         initViewModel()
         return view
+
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProvider(this).get(AccountNoVisibleViewModel::class.java)
-        viewModel.hhhh()
-
+        viewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
+        viewModel.getAccountReceived().observe(this, accountObserver)
 
     }
 
     fun setUpRecyclerView() {
-        mAdapter.RecyclerAdapter(arrayListOf(), requireContext())
-        mRecyclerView.setHasFixedSize(true)
-        mRecyclerView.layoutManager = LinearLayoutManager(context)
-        mRecyclerView.adapter = mAdapter
+        accountAdapter.RecyclerAdapter(arrayListOf(), requireContext())
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = accountAdapter
     }
 }
-

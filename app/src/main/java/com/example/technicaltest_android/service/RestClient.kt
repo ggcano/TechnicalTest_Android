@@ -8,12 +8,15 @@ import java.util.concurrent.TimeUnit
 
 class RestClient {
     private val TAG = "Network"
-    val CONNECT_TIMEOUT = 20000
-    val WRITE_TIMEOUT = 20000
-    val READ_TIMEOUT = 20000
+    private val CONNECT_TIMEOUT = 20000
+    private val WRITE_TIMEOUT = 20000
+    private val READ_TIMEOUT = 20000
 
-    lateinit var pokeServices: PokeServices
+    private lateinit var service: Services
     private val baseUrl = "https://run.mocky.io/v3/"
+
+    //FULL URL
+    //https://run.mocky.io/v3/78c16efb-9e28-41ba-b377-19f9b6d30da2
 
     init {
         val okHttpClient = OkHttpClient.Builder()
@@ -35,12 +38,12 @@ class RestClient {
         initServices(retrofit)
     }
 
-    fun getPokemonsServices(): PokeServices {
+    fun getAccountServices(): Services {
 
-        return pokeServices
+        return service
     }
 
-    fun initServices (retrofit: Retrofit) {
-        pokeServices = retrofit.create(PokeServices::class.java)
+    private fun initServices (retrofit: Retrofit) {
+        service = retrofit.create(Services::class.java)
     }
 }

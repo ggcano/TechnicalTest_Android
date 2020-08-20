@@ -2,16 +2,16 @@ package com.example.technicaltest_android.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.technicaltest_android.model.Pokemon
-import com.example.technicaltest_android.repository.PokemonRepositoryImpl
+import com.example.technicaltest_android.model.Account
+import com.example.technicaltest_android.repository.AccountRepositoryImpl
 
 class AccountNoVisibleViewModel: ViewModel() {
-    private val repo = PokemonRepositoryImpl()
-    val entities = mutableListOf<Pokemon>()
+    private val repo = AccountRepositoryImpl()
+    val entities = mutableListOf<Account>()
 
-    fun userData(): MutableLiveData<MutableList<Pokemon>> {
-        val mutableData = MutableLiveData<MutableList<Pokemon>>()
-        repo.getPokemonsFromApi().observeForever { accountList ->
+    fun userData(): MutableLiveData<MutableList<Account>> {
+        val mutableData = MutableLiveData<MutableList<Account>>()
+        repo.getAccountFromApi().observeForever { accountList ->
             mutableData.value = accountList
 
         }
@@ -19,15 +19,4 @@ class AccountNoVisibleViewModel: ViewModel() {
 
     }
 
-    fun hhhh(): ArrayList<Pokemon> {
-        val loquesea = ArrayList<Pokemon>()
-        for (caca in entities) {
-            if (caca.isVisibleAcoount == false) {
-                loquesea.add(caca)
-
-            }
-
-        }
-        return loquesea
-    }
 }

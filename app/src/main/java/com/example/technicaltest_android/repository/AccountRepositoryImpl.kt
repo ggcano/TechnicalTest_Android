@@ -2,29 +2,24 @@ package com.example.technicaltest_android.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.example.technicaltest_android.dto.AccountListDTO
-import com.example.technicaltest_android.dto.AccountsDTO
 import com.example.technicaltest_android.dto.Mapper
-import com.example.technicaltest_android.model.Pokemon
+import com.example.technicaltest_android.model.Account
 import com.example.technicaltest_android.service.RestClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PokemonRepositoryImpl : PokemonRepository {
+class AccountRepositoryImpl : Repository {
+    private val restClient: RestClient = RestClient()
 
-    val restClient: RestClient = RestClient()
-
-    override fun generatePokemonList(): MutableList<Pokemon> {
-        val pokemones: MutableList<Pokemon> = ArrayList()
-
-
-        return pokemones
+    override fun generateAccountList(): MutableList<Account> {
+        return ArrayList()
     }
 
-    fun getPokemonsFromApi(): MutableLiveData<MutableList<Pokemon>> {
-        val mutableLiveData: MutableLiveData<MutableList<Pokemon>> = MutableLiveData()
+    fun getAccountFromApi(): MutableLiveData<MutableList<Account>> {
+        val list: MutableLiveData<MutableList<Account>> = MutableLiveData()
 
-        val call = restClient.getPokemonsServices().getAccountList()
+        val call = restClient.getAccountServices().getAccountList()
         call.enqueue(object : Callback<AccountListDTO> {
             override fun onFailure(call: Call<AccountListDTO>?, t: Throwable?) {
                 t?.printStackTrace()
@@ -34,11 +29,11 @@ class PokemonRepositoryImpl : PokemonRepository {
                 call: Call<AccountListDTO>?,
                 response: Response<AccountListDTO>?
             ) {
-                mutableLiveData.value = Mapper.toListDomain(response?.body()!!)
+                list.value = Mapper.toListDomain(response?.body()!!)
             }
         })
 
-        return mutableLiveData
+        return list
     }
 
 
