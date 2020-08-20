@@ -40,7 +40,6 @@ class AccountAdapter : RecyclerView.Adapter<AccountAdapter.ViewHolder>() {
         )
     }
 
-
     override fun getItemCount(): Int {
         return accountList.size
     }
@@ -54,6 +53,16 @@ class AccountAdapter : RecyclerView.Adapter<AccountAdapter.ViewHolder>() {
 
     fun updateList(datalist: MutableList<Account>) {
         this.accountList = datalist
+        notifyDataSetChanged()
+    }
+
+    fun noVisibleAccount () {
+        val newList = ArrayList<Account>()
+            for (list in accountList) {
+                if (!list.isVisibleAcoount) {
+                    newList.add(list)
+                }
+            }
         notifyDataSetChanged()
     }
 }

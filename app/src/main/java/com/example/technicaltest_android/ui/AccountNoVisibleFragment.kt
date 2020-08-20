@@ -15,6 +15,7 @@ import com.example.technicaltest_android.R
 import com.example.technicaltest_android.adapter.AccountAdapter
 import com.example.technicaltest_android.model.Account
 import com.example.technicaltest_android.viewmodel.AccountNoVisibleViewModel
+import kotlinx.android.synthetic.main.activity_list.*
 
 
 class AccountNoVisibleFragment () : Fragment() {
